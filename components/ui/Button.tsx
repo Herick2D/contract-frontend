@@ -12,11 +12,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
     
     const variants = {
-      primary: 'bg-primary-900 text-white hover:bg-primary-800 focus:ring-primary-500 shadow-soft hover:shadow-soft-lg',
-      secondary: 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-400 shadow-soft hover:shadow-glow',
-      outline: 'border-2 border-primary-300 text-primary-700 hover:bg-primary-50 focus:ring-primary-300',
-      ghost: 'text-primary-600 hover:bg-primary-100 focus:ring-primary-200',
-      danger: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-soft',
+      primary: 'bg-primary-900 text-white hover:bg-primary-800 focus:ring-primary-500 shadow-soft hover:shadow-soft-lg dark:bg-gray-700 dark:hover:bg-gray-600',
+      secondary: 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-400 shadow-soft hover:shadow-glow dark:bg-gray-600 dark:hover:bg-gray-500',
+      outline: 'border-2 border-primary-300 text-primary-700 hover:bg-primary-50 focus:ring-primary-300 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800',
+      ghost: 'text-primary-600 hover:bg-primary-100 focus:ring-primary-200 dark:text-gray-300 dark:hover:bg-gray-800',
+      danger: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-soft dark:bg-red-600',
     };
     
     const sizes = {

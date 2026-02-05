@@ -29,19 +29,10 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
             <div className="flex flex-col items-center">
               <motion.div
                 initial={false}
-                animate={{
-                  scale: isCurrent ? 1.1 : 1,
-                  backgroundColor: isCompleted
-                    ? '#10b981'
-                    : isCurrent
-                    ? '#0f172a'
-                    : '#e2e8f0',
-                }}
+                animate={{ scale: isCurrent ? 1.1 : 1 }}
                 className={cn(
                   'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-colors duration-300',
-                  isCompleted && 'text-white',
-                  isCurrent && 'text-white ring-4 ring-primary-100',
-                  isUpcoming && 'text-primary-400'
+                  isCompleted ? 'bg-success-500 text-white' : isCurrent ? 'bg-primary-900 text-white ring-4 ring-primary-100 dark:ring-gray-700' : 'bg-primary-100 text-primary-400 dark:bg-gray-800 dark:text-gray-400',
                 )}
               >
                 {isCompleted ? (
@@ -61,13 +52,13 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
                 <p
                   className={cn(
                     'text-sm font-medium transition-colors duration-200',
-                    isCurrent || isCompleted ? 'text-primary-900' : 'text-primary-400'
+                    isCurrent || isCompleted ? 'text-gray-900 dark:text-gray-100' : 'text-primary-400 dark:text-gray-400'
                   )}
                 >
                   {step.title}
                 </p>
                 {step.description && (
-                  <p className="text-xs text-primary-500 mt-0.5 max-w-[120px]">
+                  <p className="text-xs text-primary-500 dark:text-gray-400 mt-0.5 max-w-[120px]">
                     {step.description}
                   </p>
                 )}
@@ -75,14 +66,14 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
             </div>
             
             {index < steps.length - 1 && (
-              <div className="flex-1 h-1 mx-4 mt-[-40px] bg-primary-100 rounded-full overflow-hidden">
+              <div className="flex-1 h-1 mx-4 mt-[-40px] bg-primary-100 dark:bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
                   initial={false}
                   animate={{
                     width: isCompleted ? '100%' : '0%',
                   }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="h-full bg-success-500"
+                  className="h-full bg-success-500 dark:bg-success-300"
                 />
               </div>
             )}
