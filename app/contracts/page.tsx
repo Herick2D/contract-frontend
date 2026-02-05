@@ -170,10 +170,10 @@ export default function ContractsPage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-xl font-semibold text-primary-900 mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 Selecione o Template
               </h2>
-              <p className="text-primary-500 mb-6">
+              <p className="text-gray-500 dark:text-gray-400 mb-6">
                 Escolha o modelo Word que será usado para gerar os documentos
               </p>
 
@@ -196,8 +196,8 @@ export default function ContractsPage() {
                       className={cn(
                         'p-5 cursor-pointer transition-all duration-200',
                         selectedTemplate?.id === template.id
-                          ? 'border-accent-500 bg-accent-50 ring-2 ring-accent-200'
-                          : 'hover:border-primary-400 hover:bg-primary-50'
+                          ? 'border-gray-300 bg-gray-50 ring-2 ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:ring-gray-700'
+                          : 'hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-600 dark:hover:bg-gray-800'
                       )}
                       onClick={() => setSelectedTemplate(template)}
                     >
@@ -205,19 +205,19 @@ export default function ContractsPage() {
                         <div className={cn(
                           'w-12 h-12 rounded-xl flex items-center justify-center',
                           selectedTemplate?.id === template.id
-                            ? 'bg-accent-500 text-white'
-                            : 'bg-blue-100 text-blue-600'
+                            ? 'bg-gray-800 text-white'
+                            : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
                         )}>
                           <FileText className="w-6 h-6" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-primary-900 truncate">
+                          <h4 className="font-semibold text-gray-900 dark:text-gray-100 truncate">
                             {template.name}
                           </h4>
-                          <p className="text-sm text-primary-500 truncate">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
                             {template.filename}
                           </p>
-                          <p className="text-xs text-primary-400 mt-1">
+                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                             {template.placeholders.length} placeholders
                           </p>
                         </div>
