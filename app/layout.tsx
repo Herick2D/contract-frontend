@@ -15,8 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="min-h-screen bg-primary-50">
-        {/* Inline script applies theme early to avoid flash/resets on navigation */}
+      <body className="min-h-screen bg-gray-50 dark:bg-slate-900">
+
         <script
           dangerouslySetInnerHTML={{
             __html: `;(function(){try{var theme=localStorage.getItem('theme')|| (document.cookie.match(/(^|; )theme=([^;]+)/)||[])[2];if(!theme){theme=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(theme==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){} })();`,
@@ -28,7 +28,7 @@ export default function RootLayout({
             {children}
           </main>
         </div>
-        <Toaster 
+        <Toaster
           position="top-right"
           toastOptions={{
             style: {

@@ -2,10 +2,10 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Image as ImageIcon, 
-  Upload, 
-  Trash2, 
+import {
+  Image as ImageIcon,
+  Upload,
+  Trash2,
   Search,
   RefreshCw,
   AlertCircle,
@@ -15,21 +15,21 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Header } from '@/components/layout';
-import { 
-  Card, 
-  CardContent, 
-  CardHeader, 
-  CardTitle, 
-  Button, 
-  Badge, 
-  FileDropzone 
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Button,
+  Badge,
+  FileDropzone
 } from '@/components/ui';
-import { 
-  listPrints, 
-  uploadPrints, 
-  deletePrint, 
+import {
+  listPrints,
+  uploadPrints,
+  deletePrint,
   clearAllPrints,
-  getPrintUrl 
+  getPrintUrl
 } from '@/lib/api';
 import { cn, formatBytes } from '@/lib/utils';
 import type { PrintInfo, PrintUploadResponse } from '@/types';
@@ -66,7 +66,7 @@ export default function PrintsPage() {
       setIsUploading(true);
       const result = await uploadPrints(files);
       setUploadResult(result);
-      
+
       if (result.sucesso) {
         toast.success(result.mensagem);
         setShowUpload(false);
@@ -116,44 +116,44 @@ export default function PrintsPage() {
 
   return (
     <>
-      <Header 
-        title="Prints" 
+      <Header
+        title="Prints"
         description="Gerencie as imagens das cláusulas contratuais"
       />
 
       <div className="p-8">
-        {/* Actions Bar */}
+
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <div className="relative w-80">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-primary-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-slate-400" />
               <input
                 type="text"
                 placeholder="Buscar por número do contrato..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full h-11 pl-10 pr-4 bg-white border border-primary-200 rounded-xl text-sm placeholder:text-primary-400 focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-100 transition-all"
+                className="w-full h-11 pl-10 pr-4 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm placeholder:text-gray-400 dark:placeholder:text-slate-400 focus:outline-none focus:border-gray-300 dark:focus:border-slate-600 focus:ring-2 focus:ring-gray-100 dark:focus:ring-slate-800 transition-all text-gray-900 dark:text-gray-100"
               />
             </div>
 
-            <div className="flex items-center gap-1 p-1 bg-primary-100 rounded-lg">
+            <div className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-slate-700 rounded-lg">
               <button
                 onClick={() => setViewMode('grid')}
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  viewMode === 'grid' ? 'bg-white shadow-sm' : 'hover:bg-primary-200'
+                  viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-slate-600'
                 )}
               >
-                <Grid className="w-4 h-4 text-primary-600" />
+                <Grid className="w-4 h-4 text-gray-700 dark:text-gray-200" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  viewMode === 'list' ? 'bg-white shadow-sm' : 'hover:bg-primary-200'
+                  viewMode === 'list' ? 'bg-white shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-slate-600'
                 )}
               >
-                <List className="w-4 h-4 text-primary-600" />
+                <List className="w-4 h-4 text-gray-700 dark:text-gray-200" />
               </button>
             </div>
           </div>
@@ -176,27 +176,27 @@ export default function PrintsPage() {
           </div>
         </div>
 
-        {/* Stats */}
+
         <div className="grid grid-cols-3 gap-6 mb-6">
           <Card variant="elevated" className="p-5">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                <ImageIcon className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-slate-700 flex items-center justify-center">
+                <ImageIcon className="w-6 h-6 text-gray-700 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-sm text-primary-500">Total de Prints</p>
-                <p className="text-2xl font-bold text-primary-900">{prints.length}</p>
+                <p className="text-sm text-gray-500 dark:text-slate-400">Total de Prints</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{prints.length}</p>
               </div>
             </div>
           </Card>
           <Card variant="elevated" className="p-5">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-slate-700 flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-gray-700 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-sm text-primary-500">Armazenamento</p>
-                <p className="text-2xl font-bold text-primary-900">
+                <p className="text-sm text-gray-500 dark:text-slate-400">Armazenamento</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                   {formatBytes(prints.reduce((acc, p) => acc + p.size_bytes, 0))}
                 </p>
               </div>
@@ -204,25 +204,25 @@ export default function PrintsPage() {
           </Card>
           <Card variant="elevated" className="p-5">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-accent-100 flex items-center justify-center">
-                <Upload className="w-6 h-6 text-accent-600" />
+              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-slate-700 flex items-center justify-center">
+                <Upload className="w-6 h-6 text-gray-700 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-sm text-primary-500">Formatos</p>
-                <p className="text-2xl font-bold text-primary-900">PNG, JPG, ZIP</p>
+                <p className="text-sm text-gray-500 dark:text-slate-400">Formatos</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">PNG, JPG, ZIP</p>
               </div>
             </div>
           </Card>
         </div>
 
-        {/* Upload Modal */}
+
         <AnimatePresence>
           {showUpload && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
               onClick={() => { setShowUpload(false); setUploadResult(null); }}
             >
               <motion.div
@@ -230,19 +230,19 @@ export default function PrintsPage() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white rounded-2xl shadow-soft-lg w-full max-w-lg"
+                className="bg-white dark:bg-slate-800 rounded-2xl shadow-soft-lg w-full max-w-lg"
               >
-                <CardHeader className="border-b border-primary-100">
+                <CardHeader className="border-b border-gray-100 dark:border-slate-700">
                   <CardTitle>Upload de Prints</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-4">
-                  <div className="bg-accent-50 border border-accent-200 rounded-xl p-4">
-                    <h4 className="font-medium text-accent-800 mb-2">📋 Instruções</h4>
-                    <ul className="text-sm text-accent-700 space-y-1">
+                  <div className="bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4">
+                    <h4 className="font-medium text-gray-800 dark:text-gray-100 mb-2">📋 Instruções</h4>
+                    <ul className="text-sm text-gray-700 dark:text-gray-200 space-y-1">
                       <li>• O nome do arquivo deve ser o número do contrato</li>
                       <li>• Formatos aceitos: <strong>.png</strong>, <strong>.jpg</strong>, <strong>.jpeg</strong></li>
                       <li>• Você pode enviar um <strong>.zip</strong> com múltiplas imagens</li>
-                      <li>• Exemplo: <code className="bg-accent-100 px-1 rounded">61796.png</code></li>
+                      <li>• Exemplo: <code className="bg-gray-100 dark:bg-slate-700 px-1 rounded">61796.png</code></li>
                     </ul>
                   </div>
 
@@ -263,8 +263,8 @@ export default function PrintsPage() {
 
                   {isUploading && (
                     <div className="flex items-center justify-center gap-3 py-4">
-                      <div className="w-5 h-5 border-2 border-accent-500 border-t-transparent rounded-full animate-spin" />
-                      <span className="text-primary-600">Enviando prints...</span>
+                      <div className="w-5 h-5 border-2 border-gray-500 dark:border-slate-400 border-t-transparent rounded-full animate-spin" />
+                      <span className="text-gray-700 dark:text-gray-200">Enviando prints...</span>
                     </div>
                   )}
 
@@ -286,7 +286,7 @@ export default function PrintsPage() {
                           {uploadResult.mensagem}
                         </span>
                       </div>
-                      
+
                       {uploadResult.rejeitados.length > 0 && (
                         <div className="mt-3 space-y-1">
                           <p className="text-sm font-medium text-error-700">Arquivos rejeitados:</p>
@@ -301,8 +301,8 @@ export default function PrintsPage() {
                   )}
 
                   <div className="flex justify-end gap-3 pt-4">
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       onClick={() => { setShowUpload(false); setUploadResult(null); }}
                     >
                       Fechar
@@ -314,7 +314,7 @@ export default function PrintsPage() {
           )}
         </AnimatePresence>
 
-        {/* Prints List */}
+
         {isLoading ? (
           <div className={cn(
             viewMode === 'grid' ? 'grid grid-cols-6 gap-4' : 'space-y-2'
@@ -322,23 +322,23 @@ export default function PrintsPage() {
             {[...Array(12)].map((_, i) => (
               <div key={i} className={cn(
                 'animate-pulse',
-                viewMode === 'grid' 
-                  ? 'aspect-square bg-primary-100 rounded-xl' 
-                  : 'h-16 bg-primary-100 rounded-xl'
+                viewMode === 'grid'
+                  ? 'aspect-square bg-gray-100 dark:bg-slate-700 rounded-xl'
+                  : 'h-16 bg-gray-100 dark:bg-slate-700 rounded-xl'
               )} />
             ))}
           </div>
         ) : filteredPrints.length === 0 ? (
           <Card variant="bordered" className="p-12 text-center">
-            <div className="w-20 h-20 rounded-2xl bg-primary-100 flex items-center justify-center mx-auto mb-4">
-              <ImageIcon className="w-10 h-10 text-primary-400" />
+            <div className="w-20 h-20 rounded-2xl bg-gray-100 dark:bg-slate-700 flex items-center justify-center mx-auto mb-4">
+              <ImageIcon className="w-10 h-10 text-gray-400 dark:text-slate-400" />
             </div>
-            <h3 className="text-xl font-semibold text-primary-900">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
               {searchTerm ? 'Nenhum print encontrado' : 'Nenhum print cadastrado'}
             </h3>
-            <p className="text-primary-500 mt-2 mb-6 max-w-md mx-auto">
-              {searchTerm 
-                ? 'Tente buscar com outros termos' 
+            <p className="text-gray-500 dark:text-slate-400 mt-2 mb-6 max-w-md mx-auto">
+              {searchTerm
+                ? 'Tente buscar com outros termos'
                 : 'Faça upload das imagens das cláusulas contratuais para incluí-las nos documentos gerados.'
               }
             </p>
@@ -361,7 +361,7 @@ export default function PrintsPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.02 }}
-                className="group relative aspect-square bg-white rounded-xl border border-primary-200 overflow-hidden hover:shadow-soft transition-all"
+                className="group relative aspect-square bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-soft transition-all"
               >
                 <img
                   src={getPrintUrl(print.contract_number)}
@@ -405,22 +405,22 @@ export default function PrintsPage() {
               >
                 <Card variant="bordered" className="p-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
                       <img
                         src={getPrintUrl(print.contract_number)}
                         alt={print.contract_number}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
-                          e.currentTarget.parentElement!.innerHTML = '<svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>';
+                          e.currentTarget.parentElement!.innerHTML = '<svg class="w-6 h-6 text-gray-400 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>';
                         }}
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-primary-900">
+                      <p className="font-medium text-gray-900 dark:text-gray-100">
                         Contrato {print.contract_number}
                       </p>
-                      <p className="text-sm text-primary-500">
+                      <p className="text-sm text-gray-500 dark:text-slate-400">
                         {print.filename} • {formatBytes(print.size_bytes)}
                       </p>
                     </div>

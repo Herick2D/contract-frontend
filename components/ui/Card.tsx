@@ -10,9 +10,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const variants = {
       default: 'bg-white dark:bg-gray-800 rounded-2xl',
       elevated: 'bg-white dark:bg-gray-800 rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow duration-300',
-      bordered: 'bg-white dark:bg-transparent dark:border-gray-700 rounded-2xl border border-primary-200 dark:border-primary-800',
+      bordered: 'bg-white dark:bg-transparent dark:border-gray-700 rounded-2xl border border-gray-200 dark:border-slate-700',
     };
-    
+
     return (
       <div
         ref={ref}

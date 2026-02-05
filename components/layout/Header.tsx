@@ -8,24 +8,38 @@ interface HeaderProps {
   description?: string;
 }
 
+
+function getInitialTheme(): boolean {
+  if (typeof window === 'undefined') return false;
+
+  try {
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored === 'dark';
+
+    const cookieTheme = document.cookie.match(/(^|; )theme=([^;]+)/);
+    if (cookieTheme) return cookieTheme[2] === 'dark';
+
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  } catch (e) {
+    return false;
+  }
+}
+
 export function Header({ title, description }: HeaderProps) {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(getInitialTheme);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('theme');
-      if (stored) {
-        setIsDark(stored === 'dark');
-      } else {
-        setIsDark(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }
-    } catch (e) {
-      setIsDark(false);
-    }
+    setMounted(true);
+
+    setIsDark(document.documentElement.classList.contains('dark'));
   }, []);
 
-  useEffect(() => {
-    if (isDark) {
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+
+    if (newTheme) {
       document.documentElement.classList.add('dark');
       try { localStorage.setItem('theme', 'dark'); } catch(e) {}
       try { document.cookie = 'theme=dark; path=/; max-age=31536000'; } catch(e) {}
@@ -34,10 +48,10 @@ export function Header({ title, description }: HeaderProps) {
       try { localStorage.setItem('theme', 'light'); } catch(e) {}
       try { document.cookie = 'theme=light; path=/; max-age=31536000'; } catch(e) {}
     }
-  }, [isDark]);
+  };
 
   return (
-    <header className="h-20 border-b border-gray-200 bg-white dark:bg-transparent dark:border-gray-800 sticky top-0 z-40">
+    <header className="h-20 border-b border-gray-200 bg-white dark:bg-slate-800 dark:border-slate-700 sticky top-0 z-40">
       <div className="h-full px-8 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{title}</h1>
@@ -47,7 +61,7 @@ export function Header({ title, description }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Search */}
+
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-400" />
             <input
@@ -57,14 +71,16 @@ export function Header({ title, description }: HeaderProps) {
             />
           </div>
 
-          {/* Dark mode toggle */}
-          <button
-            aria-label="Toggle dark mode"
-            onClick={() => setIsDark(prev => !prev)}
-            className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          >
-            {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-600" />}
-          </button>
+
+          {mounted && (
+            <button
+              aria-label="Toggle dark mode"
+              onClick={toggleTheme}
+              className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-600" />}
+            </button>
+          )}
         </div>
       </div>
     </header>

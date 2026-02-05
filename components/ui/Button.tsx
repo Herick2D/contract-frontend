@@ -10,21 +10,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
     const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
-    
+
     const variants = {
-      primary: 'bg-primary-900 text-white hover:bg-primary-800 focus:ring-primary-500 shadow-soft hover:shadow-soft-lg dark:bg-gray-700 dark:hover:bg-gray-600',
-      secondary: 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-400 shadow-soft hover:shadow-glow dark:bg-gray-600 dark:hover:bg-gray-500',
-      outline: 'border-2 border-primary-300 text-primary-700 hover:bg-primary-50 focus:ring-primary-300 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800',
-      ghost: 'text-primary-600 hover:bg-primary-100 focus:ring-primary-200 dark:text-gray-300 dark:hover:bg-gray-800',
+      primary: 'bg-gray-900 text-white hover:bg-gray-800 focus:ring-gray-700 shadow-soft hover:shadow-soft-lg dark:bg-gray-700 dark:hover:bg-gray-600',
+      secondary: 'bg-slate-600 text-white hover:bg-slate-500 focus:ring-slate-400 shadow-soft hover:shadow-glow dark:bg-gray-600 dark:hover:bg-gray-500',
+      outline: 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-300 dark:border-slate-700 dark:text-gray-200 dark:hover:bg-gray-800',
+      ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-800',
       danger: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-soft dark:bg-red-600',
     };
-    
+
     const sizes = {
       sm: 'h-9 px-4 text-sm gap-2',
       md: 'h-11 px-6 text-sm gap-2',
       lg: 'h-14 px-8 text-base gap-3',
     };
-    
+
     return (
       <button
         ref={ref}

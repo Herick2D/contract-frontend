@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FileSpreadsheet, 
+import {
+  FileSpreadsheet,
   FileText,
   Check,
   Download,
@@ -16,15 +16,15 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Header } from '@/components/layout';
-import { 
-  Card, 
-  CardContent, 
-  Button, 
-  Badge, 
+import {
+  Card,
+  CardContent,
+  Button,
+  Badge,
   FileDropzone,
-  Stepper 
+  Stepper
 } from '@/components/ui';
-import { 
+import {
   listTemplates,
   listContracts,
   processContracts,
@@ -51,7 +51,7 @@ export default function ContractsPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<ProcessingResponse | null>(null);
 
-  // Load templates
+
   useEffect(() => {
     async function load() {
       try {
@@ -64,7 +64,7 @@ export default function ContractsPage() {
     load();
   }, []);
 
-  // Load contracts from Excel
+
   const loadContracts = useCallback(async () => {
     if (!excelFile) return;
 
@@ -85,7 +85,7 @@ export default function ContractsPage() {
     }
   }, [excelFile]);
 
-  // Process contracts
+
   const handleProcess = async () => {
     if (!selectedTemplate || !excelFile || selectedContracts.length === 0) {
       toast.error('Selecione o template, Excel e pelo menos um contrato');
@@ -95,15 +95,15 @@ export default function ContractsPage() {
     try {
       setIsProcessing(true);
       setCurrentStep(3);
-      
+
       const response = await processContracts(
         selectedTemplate.id,
         excelFile,
         selectedContracts.length === contracts.length ? undefined : selectedContracts
       );
-      
+
       setResult(response);
-      
+
       if (response.sucessos > 0) {
         toast.success(`${response.sucessos} contrato(s) processado(s) com sucesso!`);
       }
@@ -149,20 +149,20 @@ export default function ContractsPage() {
 
   return (
     <>
-      <Header 
-        title="Processar Contratos" 
+      <Header
+        title="Processar Contratos"
         description="Gere documentos automaticamente a partir do Excel"
       />
 
       <div className="p-8">
-        {/* Stepper */}
+
         <Card variant="elevated" className="p-6 mb-8">
           <Stepper steps={steps} currentStep={currentStep} />
         </Card>
 
-        {/* Step Content */}
+
         <AnimatePresence mode="wait">
-          {/* Step 0: Select Template */}
+
           {currentStep === 0 && (
             <motion.div
               key="step-0"
@@ -179,11 +179,11 @@ export default function ContractsPage() {
 
               {templates.length === 0 ? (
                 <Card variant="bordered" className="p-8 text-center">
-                  <AlertCircle className="w-12 h-12 text-accent-500 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-primary-900">
+                  <AlertCircle className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                     Nenhum template disponível
                   </h3>
-                  <p className="text-primary-500 mt-2">
+                  <p className="text-gray-500 dark:text-gray-400 mt-2">
                     Você precisa cadastrar um template primeiro
                   </p>
                 </Card>
@@ -222,8 +222,8 @@ export default function ContractsPage() {
                           </p>
                         </div>
                         {selectedTemplate?.id === template.id && (
-                          <div className="w-6 h-6 rounded-full bg-accent-500 flex items-center justify-center">
-                            <Check className="w-4 h-4 text-white" />
+                          <div className="w-6 h-6 rounded-full bg-gray-900 dark:bg-gray-200 flex items-center justify-center">
+                            <Check className="w-4 h-4 text-white dark:text-gray-900" />
                           </div>
                         )}
                       </div>
@@ -234,7 +234,7 @@ export default function ContractsPage() {
             </motion.div>
           )}
 
-          {/* Step 1: Upload Excel */}
+
           {currentStep === 1 && (
             <motion.div
               key="step-1"
@@ -242,10 +242,10 @@ export default function ContractsPage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-xl font-semibold text-primary-900 mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 Upload da Planilha
               </h2>
-              <p className="text-primary-500 mb-6">
+              <p className="text-gray-500 dark:text-gray-400 mb-6">
                 Envie o arquivo Excel com os dados dos contratos
               </p>
 
@@ -275,7 +275,7 @@ export default function ContractsPage() {
             </motion.div>
           )}
 
-          {/* Step 2: Select Contracts */}
+
           {currentStep === 2 && (
             <motion.div
               key="step-2"
@@ -285,10 +285,10 @@ export default function ContractsPage() {
             >
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-xl font-semibold text-primary-900">
+                  <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                     Selecione os Contratos
                   </h2>
-                  <p className="text-primary-500">
+                  <p className="text-gray-500 dark:text-gray-400">
                     {selectedContracts.length} de {contracts.length} selecionados
                   </p>
                 </div>
@@ -313,8 +313,8 @@ export default function ContractsPage() {
                         className={cn(
                           'p-3 rounded-xl text-sm font-medium transition-all duration-200',
                           isSelected
-                            ? 'bg-accent-500 text-white shadow-sm'
-                            : 'bg-primary-50 text-primary-700 hover:bg-primary-100'
+                            ? 'bg-gray-900 text-white shadow-sm'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
                         )}
                       >
                         {contract}
@@ -326,7 +326,7 @@ export default function ContractsPage() {
             </motion.div>
           )}
 
-          {/* Step 3: Processing / Results */}
+
           {currentStep === 3 && (
             <motion.div
               key="step-3"
@@ -336,28 +336,28 @@ export default function ContractsPage() {
             >
               {isProcessing ? (
                 <Card variant="bordered" className="p-12 text-center">
-                  <Loader2 className="w-16 h-16 text-accent-500 mx-auto mb-6 animate-spin" />
-                  <h3 className="text-xl font-semibold text-primary-900">
+                  <Loader2 className="w-16 h-16 text-gray-600 mx-auto mb-6 animate-spin" />
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                     Processando contratos...
                   </h3>
-                  <p className="text-primary-500 mt-2">
+                  <p className="text-gray-500 dark:text-gray-400 mt-2">
                     Aguarde enquanto os documentos são gerados
                   </p>
                 </Card>
               ) : result ? (
                 <div className="space-y-6">
-                  {/* Summary */}
+
                   <Card variant="elevated" className="p-6">
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-xl font-semibold text-primary-900">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                           Processamento Concluído
                         </h3>
-                        <p className="text-primary-500">
+                        <p className="text-gray-500 dark:text-gray-400">
                           Job ID: {result.job_id}
                         </p>
                       </div>
-                      <Badge 
+                      <Badge
                         variant={result.status === 'completed' ? 'success' : 'error'}
                         size="md"
                       >
@@ -366,9 +366,9 @@ export default function ContractsPage() {
                     </div>
 
                     <div className="grid grid-cols-4 gap-4">
-                      <div className="p-4 bg-primary-50 rounded-xl">
-                        <p className="text-sm text-primary-500">Total</p>
-                        <p className="text-2xl font-bold text-primary-900">
+                      <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Total</p>
+                        <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                           {result.total_contratos}
                         </p>
                       </div>
@@ -384,9 +384,9 @@ export default function ContractsPage() {
                           {result.falhas}
                         </p>
                       </div>
-                      <div className="p-4 bg-accent-50 rounded-xl">
-                        <p className="text-sm text-accent-600">Processados</p>
-                        <p className="text-2xl font-bold text-accent-700">
+                      <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Processados</p>
+                        <p className="text-2xl font-bold text-gray-700 dark:text-gray-100">
                           {result.processados}
                         </p>
                       </div>
@@ -404,10 +404,10 @@ export default function ContractsPage() {
                     )}
                   </Card>
 
-                  {/* Results Detail */}
+
                   {result.resultados.length > 0 && (
                     <Card variant="bordered" className="p-6">
-                      <h4 className="font-semibold text-primary-900 mb-4">
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">
                         Detalhes do Processamento
                       </h4>
                       <div className="space-y-2 max-h-[300px] overflow-y-auto">
@@ -444,7 +444,7 @@ export default function ContractsPage() {
                     </Card>
                   )}
 
-                  {/* Action */}
+
                   <div className="flex justify-center">
                     <Button variant="outline" onClick={handleReset}>
                       <RefreshCw className="w-4 h-4" />
@@ -457,9 +457,9 @@ export default function ContractsPage() {
           )}
         </AnimatePresence>
 
-        {/* Navigation */}
+
         {currentStep < 3 && (
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-primary-100">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100 dark:border-slate-700">
             <Button
               variant="ghost"
               onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}

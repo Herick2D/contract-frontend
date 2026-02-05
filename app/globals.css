@@ -25,13 +25,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode overrides (class-based) */
+
 .dark body {
   background-color: #0b1220;
   color: #e6eef8;
 }
 
-/* Dark scrollbar */
+
 .dark ::-webkit-scrollbar-track {
   background: #071022;
 }
@@ -40,7 +40,7 @@ body {
   background: #1f2a3a;
 }
 
-/* Dark focus & selection */
+
 .dark *:focus-visible {
   outline: 2px solid #334155;
   outline-offset: 2px;
@@ -51,7 +51,7 @@ body {
   color: #cbd5e1;
 }
 
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -71,19 +71,19 @@ body {
   background: #94a3b8;
 }
 
-/* Focus styles */
+
 *:focus-visible {
   outline: 2px solid #f59e0b;
   outline-offset: 2px;
 }
 
-/* Selection */
+
 ::selection {
   background-color: #fde68a;
   color: #78350f;
 }
 
-/* Animations */
+
 @layer utilities {
   .animate-in {
     animation: animateIn 0.3s ease-out;
@@ -101,14 +101,14 @@ body {
   }
 }
 
-/* Pattern background */
+
 .bg-pattern {
-  background-image: 
+  background-image:
     radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-/* Gradient text */
+
 .text-gradient {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   -webkit-background-clip: text;
@@ -116,14 +116,14 @@ body {
   background-clip: text;
 }
 
-/* Glass effect */
+
 .glass {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Shimmer effect */
+
 .shimmer {
   background: linear-gradient(
     90deg,

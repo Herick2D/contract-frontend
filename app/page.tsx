@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  FileText, 
-  Image, 
-  FileSpreadsheet, 
+import {
+  FileText,
+  Image,
+  FileSpreadsheet,
   ArrowRight,
   CheckCircle,
   Clock,
@@ -97,8 +97,8 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Header 
-        title="Dashboard" 
+      <Header
+        title="Dashboard"
         description="Visão geral do sistema de geração de contratos"
       />
 
@@ -109,7 +109,7 @@ export default function DashboardPage() {
           animate="show"
           className="space-y-8"
         >
-          {/* Stats Cards */}
+
           <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6">
             <Card variant="elevated" className="p-6">
               <div className="flex items-start justify-between">
@@ -165,7 +165,7 @@ export default function DashboardPage() {
             </Card>
           </motion.div>
 
-          {/* Quick Actions */}
+
           <motion.div variants={itemVariants}>
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Ações Rápidas</h2>
             <div className="grid grid-cols-3 gap-6">
@@ -192,7 +192,7 @@ export default function DashboardPage() {
             </div>
           </motion.div>
 
-          {/* Recent Templates */}
+
           <motion.div variants={itemVariants}>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Templates Recentes</h2>
@@ -224,8 +224,8 @@ export default function DashboardPage() {
                 {recentTemplates.map((template) => (
                   <Card key={template.id} variant="bordered" className="p-5">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                        <FileText className="w-6 h-6 text-blue-600" />
+                      <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+                        <FileText className="w-6 h-6 text-gray-700" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium text-gray-900 truncate">
@@ -247,7 +247,7 @@ export default function DashboardPage() {
             )}
           </motion.div>
 
-          {/* Workflow Guide */}
+
           <motion.div variants={itemVariants}>
             <Card variant="elevated" className="p-6 bg-gray-50">
               <div className="flex items-center gap-6">
