@@ -27,10 +27,12 @@ export function Header({ title, description }: HeaderProps) {
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      try { localStorage.setItem('theme', 'dark'); } catch(e) {}
+      try { document.cookie = 'theme=dark; path=/; max-age=31536000'; } catch(e) {}
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      try { localStorage.setItem('theme', 'light'); } catch(e) {}
+      try { document.cookie = 'theme=light; path=/; max-age=31536000'; } catch(e) {}
     }
   }, [isDark]);
 

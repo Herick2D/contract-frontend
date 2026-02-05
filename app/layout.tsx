@@ -16,6 +16,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="min-h-screen bg-primary-50">
+        {/* Inline script applies theme early to avoid flash/resets on navigation */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `;(function(){try{var theme=localStorage.getItem('theme')|| (document.cookie.match(/(^|; )theme=([^;]+)/)||[])[2];if(!theme){theme=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(theme==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){} })();`,
+          }}
+        />
         <div className="flex">
           <Sidebar />
           <main className="flex-1 ml-72 min-h-screen">
