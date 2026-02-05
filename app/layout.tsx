@@ -4,7 +4,7 @@ import { Sidebar } from '@/components/layout';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Contract Generator',
+  title: 'Gerador de Contratos',
   description: 'Sistema de geração de contratos automatizada',
 };
 

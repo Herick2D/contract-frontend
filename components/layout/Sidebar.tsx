@@ -30,8 +30,8 @@ export function Sidebar() {
             <FileText className="w-5 h-5 text-gray-700 dark:text-gray-200" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">Contract</h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">Generator</p>
+            <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">Gerador</h1>
+            <p className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">de Contratos</p>
           </div>
         </Link>
       </div>
