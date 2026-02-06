@@ -1,4 +1,4 @@
-// Types para a API de Contratos
+
 
 export interface Template {
   id: string;
@@ -92,24 +92,24 @@ export interface HealthResponse {
   version: string;
 }
 
-// Store types
+
 export interface AppState {
-  // Templates
+
   templates: Template[];
   selectedTemplate: Template | null;
 
-  // Prints
+
   prints: PrintInfo[];
 
-  // Contracts
+
   contracts: string[];
   selectedContracts: string[];
 
-  // Processing
+
   currentJob: ProcessingResponse | null;
   isProcessing: boolean;
 
-  // Actions
+
   setTemplates: (templates: Template[]) => void;
   setSelectedTemplate: (template: Template | null) => void;
   setPrints: (prints: PrintInfo[]) => void;

@@ -31,21 +31,17 @@ async function handleResponse<T>(response: Response): Promise<T> {
   return response.json();
 }
 
-// ============ Health ============
-
 export async function checkHealth(): Promise<HealthResponse> {
   const response = await fetch(`${API_BASE}/health`);
   return handleResponse<HealthResponse>(response);
 }
 
-// ============ Templates ============
-
 export async function listTemplates(): Promise<Template[]> {
-  console.log("🔍 Fetching templates from:", `${API_BASE}/api/v1/templates/`);
+  console.log("Fetching templates from:", `${API_BASE}/api/v1/templates/`);
   const response = await fetch(`${API_BASE}/api/v1/templates/`);
-  console.log("📡 Response status:", response.status);
+  console.log("Response status:", response.status);
   const data = await handleResponse<TemplateListResponse>(response);
-  console.log("📦 Templates data:", data);
+  console.log("Templates data:", data);
   return data.templates;
 }
 
@@ -99,8 +95,6 @@ export function getTemplateDownloadUrl(id: string): string {
   return `${API_BASE}/api/v1/templates/${id}/download`;
 }
 
-// ============ Prints ============
-
 export async function listPrints(): Promise<PrintListResponse> {
   const response = await fetch(`${API_BASE}/api/v1/prints/`);
   return handleResponse<PrintListResponse>(response);
@@ -143,8 +137,6 @@ export async function clearAllPrints(): Promise<{ message: string }> {
   });
   return handleResponse<{ message: string }>(response);
 }
-
-// ============ Contracts ============
 
 export async function listContracts(file: File): Promise<ContractListResponse> {
   const formData = new FormData();

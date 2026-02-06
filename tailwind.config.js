@@ -1,13 +1,16 @@
-/** @type {import('tailwindcss').Config} */
+
 module.exports = {
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        // Cor principal - Slate profundo
+
         primary: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -21,7 +24,7 @@ module.exports = {
           900: '#0f172a',
           950: '#020617',
         },
-        // Accent - Âmbar dourado
+
         accent: {
           50: '#fffbeb',
           100: '#fef3c7',
@@ -34,7 +37,7 @@ module.exports = {
           800: '#92400e',
           900: '#78350f',
         },
-        // Sucesso - Verde esmeralda
+
         success: {
           50: '#ecfdf5',
           100: '#d1fae5',
@@ -47,7 +50,7 @@ module.exports = {
           800: '#065f46',
           900: '#064e3b',
         },
-        // Erro - Vermelho rubi
+
         error: {
           50: '#fef2f2',
           100: '#fee2e2',
