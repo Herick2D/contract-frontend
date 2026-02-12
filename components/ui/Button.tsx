@@ -9,20 +9,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
-    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
+    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg';
 
     const variants = {
-      primary: 'bg-gray-900 text-white hover:bg-gray-800 focus:ring-gray-700 shadow-soft hover:shadow-soft-lg dark:bg-gray-700 dark:hover:bg-gray-600',
-      secondary: 'bg-slate-600 text-white hover:bg-slate-500 focus:ring-slate-400 shadow-soft hover:shadow-glow dark:bg-gray-600 dark:hover:bg-gray-500',
-      outline: 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-300 dark:border-slate-700 dark:text-gray-200 dark:hover:bg-gray-800',
-      ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-800',
-      danger: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-soft dark:bg-red-600',
+      primary: 'bg-warm-500 text-neutral-900 font-bold hover:bg-warm-600 focus:ring-warm-500 shadow-sm hover:shadow-md dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition-all uppercase tracking-wide text-xs',
+      secondary: 'bg-neutral-600 text-white font-bold hover:bg-neutral-700 focus:ring-neutral-500 shadow-sm hover:shadow-md dark:bg-gray-600 dark:hover:bg-gray-500 uppercase tracking-wide text-xs',
+      outline: 'border-2 border-neutral-600 text-neutral-900 hover:bg-neutral-100 focus:ring-neutral-400 dark:border-slate-700 dark:text-gray-200 dark:hover:bg-gray-800 font-bold uppercase tracking-wide text-xs',
+      ghost: 'text-neutral-700 hover:bg-neutral-200 focus:ring-neutral-300 dark:text-gray-300 dark:hover:bg-gray-800 font-semibold',
+      danger: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-sm dark:bg-red-600 font-bold uppercase tracking-wide text-xs',
     };
 
     const sizes = {
-      sm: 'h-9 px-4 text-sm gap-2',
-      md: 'h-11 px-6 text-sm gap-2',
-      lg: 'h-14 px-8 text-base gap-3',
+      sm: 'h-9 px-4 text-xs gap-2',
+      md: 'h-10 px-5 text-xs gap-2',
+      lg: 'h-11 px-6 text-sm gap-3',
     };
 
     return (

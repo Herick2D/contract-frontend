@@ -8,9 +8,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', ...props }, ref) => {
     const variants = {
-      default: 'bg-white dark:bg-gray-800 rounded-2xl',
-      elevated: 'bg-white dark:bg-gray-800 rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow duration-300',
-      bordered: 'bg-white dark:bg-transparent dark:border-gray-700 rounded-2xl border border-gray-200 dark:border-slate-700',
+      default: 'bg-neutral-100 dark:bg-gray-800 rounded-lg border border-neutral-300 dark:border-gray-700',
+      elevated: 'bg-neutral-100 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-neutral-300 dark:border-gray-700',
+      bordered: 'bg-neutral-100 dark:bg-transparent dark:border-gray-700 rounded-lg border-2 border-neutral-400 dark:border-slate-700',
     };
 
     return (
@@ -29,7 +29,7 @@ const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('p-6 pb-4', className)}
+      className={cn('p-6 pb-4 border-b border-neutral-300 dark:border-gray-700', className)}
       {...props}
     />
   )
@@ -41,7 +41,7 @@ const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingEleme
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn('text-lg font-semibold text-gray-900 dark:text-gray-100', className)}
+      className={cn('text-lg font-bold text-neutral-900 dark:text-gray-100', className)}
       {...props}
     />
   )
@@ -53,7 +53,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLPara
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-sm text-gray-500 dark:text-gray-400 mt-1', className)}
+      className={cn('text-sm text-neutral-600 dark:text-gray-300 mt-1', className)}
       {...props}
     />
   )

@@ -170,20 +170,20 @@ export default function ContractsPage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4 uppercase tracking-wide">
                 Selecione o Template
               </h2>
-              <p className="text-gray-500 dark:text-gray-400 mb-6">
+              <p className="text-neutral-700 dark:text-gray-200 mb-6 text-sm">
                 Escolha o modelo Word que será usado para gerar os documentos
               </p>
 
               {templates.length === 0 ? (
-                <Card variant="bordered" className="p-8 text-center">
-                  <AlertCircle className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                <Card variant="default" className="p-8 text-center bg-neutral-50 dark:bg-gray-800">
+                  <AlertCircle className="w-12 h-12 text-neutral-600 dark:text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-base font-bold text-neutral-900 dark:text-white uppercase tracking-wide">
                     Nenhum template disponível
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400 mt-2">
+                  <p className="text-sm text-neutral-700 dark:text-gray-200 mt-2">
                     Você precisa cadastrar um template primeiro
                   </p>
                 </Card>
@@ -192,38 +192,38 @@ export default function ContractsPage() {
                   {templates.map((template) => (
                     <Card
                       key={template.id}
-                      variant="bordered"
+                      variant="default"
                       className={cn(
-                        'p-5 cursor-pointer transition-all duration-200',
+                        'p-5 cursor-pointer transition-all duration-200 bg-neutral-50',
                         selectedTemplate?.id === template.id
-                          ? 'border-gray-300 bg-gray-50 ring-2 ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:ring-gray-700'
-                          : 'hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-600 dark:hover:bg-gray-800'
+                          ? 'border-2 border-warm-500 bg-neutral-100 dark:border-warm-500 dark:bg-gray-800'
+                          : 'hover:border-neutral-500 dark:hover:border-gray-600 dark:bg-gray-800'
                       )}
                       onClick={() => setSelectedTemplate(template)}
                     >
                       <div className="flex items-start gap-4">
                         <div className={cn(
-                          'w-12 h-12 rounded-xl flex items-center justify-center',
+                          'w-14 h-14 rounded-lg flex items-center justify-center',
                           selectedTemplate?.id === template.id
-                            ? 'bg-gray-800 text-white'
-                            : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
+                            ? 'bg-warm-500 text-neutral-900'
+                            : 'bg-neutral-200 text-neutral-700 dark:bg-gray-700 dark:text-gray-200'
                         )}>
-                          <FileText className="w-6 h-6" />
+                          <FileText className="w-7 h-7" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-900 dark:text-gray-100 truncate">
+                          <h4 className="font-bold text-neutral-900 dark:text-white truncate uppercase tracking-wide text-sm">
                             {template.name}
                           </h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                          <p className="text-xs text-neutral-700 dark:text-gray-200 truncate mt-1">
                             {template.filename}
                           </p>
-                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                          <p className="text-xs text-neutral-600 dark:text-gray-300 mt-1 font-semibold">
                             {template.placeholders.length} placeholders
                           </p>
                         </div>
                         {selectedTemplate?.id === template.id && (
-                          <div className="w-6 h-6 rounded-full bg-gray-900 dark:bg-gray-200 flex items-center justify-center">
-                            <Check className="w-4 h-4 text-white dark:text-gray-900" />
+                          <div className="w-7 h-7 rounded-lg bg-neutral-900 dark:bg-gray-200 flex items-center justify-center">
+                            <Check className="w-5 h-5 text-warm-500 dark:text-gray-900" />
                           </div>
                         )}
                       </div>
@@ -242,10 +242,10 @@ export default function ContractsPage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 Upload da Planilha
               </h2>
-              <p className="text-gray-500 dark:text-gray-400 mb-6">
+              <p className="text-gray-500 dark:text-gray-200 mb-6">
                 Envie o arquivo Excel com os dados dos contratos
               </p>
 
@@ -285,10 +285,10 @@ export default function ContractsPage() {
             >
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                     Selecione os Contratos
                   </h2>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-200">
                     {selectedContracts.length} de {contracts.length} selecionados
                   </p>
                 </div>
@@ -336,11 +336,11 @@ export default function ContractsPage() {
             >
               {isProcessing ? (
                 <Card variant="bordered" className="p-12 text-center">
-                  <Loader2 className="w-16 h-16 text-gray-600 mx-auto mb-6 animate-spin" />
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  <Loader2 className="w-16 h-16 text-gray-600 dark:text-gray-300 mx-auto mb-6 animate-spin" />
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                     Processando contratos...
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400 mt-2">
+                  <p className="text-gray-500 dark:text-gray-200 mt-2">
                     Aguarde enquanto os documentos são gerados
                   </p>
                 </Card>
@@ -350,10 +350,10 @@ export default function ContractsPage() {
                   <Card variant="elevated" className="p-6">
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                           Processamento Concluído
                         </h3>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p className="text-gray-500 dark:text-gray-200">
                           Job ID: {result.job_id}
                         </p>
                       </div>
@@ -367,8 +367,8 @@ export default function ContractsPage() {
 
                     <div className="grid grid-cols-4 gap-4">
                       <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Total</p>
-                        <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                        <p className="text-sm text-gray-500 dark:text-gray-200">Total</p>
+                        <p className="text-2xl font-bold text-gray-900 dark:text-white">
                           {result.total_contratos}
                         </p>
                       </div>
@@ -385,8 +385,8 @@ export default function ContractsPage() {
                         </p>
                       </div>
                       <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Processados</p>
-                        <p className="text-2xl font-bold text-gray-700 dark:text-gray-100">
+                        <p className="text-sm text-gray-600 dark:text-gray-200">Processados</p>
+                        <p className="text-2xl font-bold text-gray-700 dark:text-white">
                           {result.processados}
                         </p>
                       </div>
@@ -407,7 +407,7 @@ export default function ContractsPage() {
 
                   {result.resultados.length > 0 && (
                     <Card variant="bordered" className="p-6">
-                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
                         Detalhes do Processamento
                       </h4>
                       <div className="space-y-2 max-h-[300px] overflow-y-auto">

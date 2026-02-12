@@ -126,34 +126,34 @@ export default function PrintsPage() {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <div className="relative w-80">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600 dark:text-gray-300" />
               <input
                 type="text"
                 placeholder="Buscar por número do contrato..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full h-11 pl-10 pr-4 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm placeholder:text-gray-400 dark:placeholder:text-slate-400 focus:outline-none focus:border-gray-300 dark:focus:border-slate-600 focus:ring-2 focus:ring-gray-100 dark:focus:ring-slate-800 transition-all text-gray-900 dark:text-gray-100"
+                className="w-full h-11 pl-10 pr-4 bg-neutral-100 dark:bg-slate-800 border border-neutral-400 dark:border-slate-700 rounded-lg text-sm placeholder:text-neutral-500 dark:placeholder:text-slate-400 focus:outline-none focus:border-warm-500 dark:focus:border-slate-600 focus:ring-1 focus:ring-warm-500 dark:focus:ring-slate-800 transition-all text-neutral-900 dark:text-white"
               />
             </div>
 
-            <div className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-slate-700 rounded-lg">
+            <div className="flex items-center gap-1 p-1 bg-neutral-200 dark:bg-slate-700 rounded-lg border border-neutral-400 dark:border-slate-600">
               <button
                 onClick={() => setViewMode('grid')}
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-slate-600'
+                  viewMode === 'grid' ? 'bg-neutral-100 dark:bg-slate-600 shadow-md' : 'hover:bg-neutral-300 dark:hover:bg-slate-600'
                 )}
               >
-                <Grid className="w-4 h-4 text-gray-700 dark:text-gray-200" />
+                <Grid className="w-4 h-4 text-neutral-900 dark:text-gray-200" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  viewMode === 'list' ? 'bg-white shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-slate-600'
+                  viewMode === 'list' ? 'bg-neutral-100 dark:bg-slate-600 shadow-md' : 'hover:bg-neutral-300 dark:hover:bg-slate-600'
                 )}
               >
-                <List className="w-4 h-4 text-gray-700 dark:text-gray-200" />
+                <List className="w-4 h-4 text-neutral-900 dark:text-gray-200" />
               </button>
             </div>
           </div>
@@ -178,25 +178,25 @@ export default function PrintsPage() {
 
 
         <div className="grid grid-cols-3 gap-6 mb-6">
-          <Card variant="elevated" className="p-5">
+          <Card variant="elevated" className="p-5 bg-neutral-50 dark:bg-gray-800">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-slate-700 flex items-center justify-center">
-                <ImageIcon className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+              <div className="w-14 h-14 rounded-lg bg-warm-500 dark:bg-slate-700 flex items-center justify-center">
+                <ImageIcon className="w-7 h-7 text-neutral-900 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-sm text-gray-500 dark:text-slate-400">Total de Prints</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{prints.length}</p>
+                <p className="text-xs text-neutral-700 dark:text-gray-200 font-bold uppercase tracking-wide">Total de Prints</p>
+                <p className="text-3xl font-bold text-neutral-900 dark:text-white">{prints.length}</p>
               </div>
             </div>
           </Card>
-          <Card variant="elevated" className="p-5">
+          <Card variant="elevated" className="p-5 bg-neutral-50 dark:bg-gray-800">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-slate-700 flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+              <div className="w-14 h-14 rounded-lg bg-warm-500 dark:bg-slate-700 flex items-center justify-center">
+                <CheckCircle className="w-7 h-7 text-neutral-900 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-sm text-gray-500 dark:text-slate-400">Armazenamento</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <p className="text-xs text-neutral-700 dark:text-gray-200 font-bold uppercase tracking-wide">Armazenamento</p>
+                <p className="text-3xl font-bold text-neutral-900 dark:text-white">
                   {formatBytes(prints.reduce((acc, p) => acc + p.size_bytes, 0))}
                 </p>
               </div>
@@ -230,14 +230,14 @@ export default function PrintsPage() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white dark:bg-slate-800 rounded-2xl shadow-soft-lg w-full max-w-lg"
+                className="bg-neutral-100 dark:bg-slate-800 rounded-2xl shadow-soft-lg w-full max-w-lg"
               >
                 <CardHeader className="border-b border-gray-100 dark:border-slate-700">
                   <CardTitle>Upload de Prints</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-4">
                   <div className="bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4">
-                    <h4 className="font-medium text-gray-800 dark:text-gray-100 mb-2">📋 Instruções</h4>
+                    <h4 className="font-medium text-gray-800 dark:text-white mb-2">📋 Instruções</h4>
                     <ul className="text-sm text-gray-700 dark:text-gray-200 space-y-1">
                       <li>• O nome do arquivo deve ser o número do contrato</li>
                       <li>• Formatos aceitos: <strong>.png</strong>, <strong>.jpg</strong>, <strong>.jpeg</strong></li>
@@ -361,7 +361,7 @@ export default function PrintsPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.02 }}
-                className="group relative aspect-square bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-soft transition-all"
+                className="group relative aspect-square bg-neutral-100 dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-soft transition-all"
               >
                 <img
                   src={getPrintUrl(print.contract_number)}

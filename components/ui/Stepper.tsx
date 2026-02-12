@@ -31,8 +31,8 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
                 initial={false}
                 animate={{ scale: isCurrent ? 1.1 : 1 }}
                 className={cn(
-                  'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-colors duration-300',
-                  isCompleted ? 'bg-success-500 text-white' : isCurrent ? 'bg-gray-900 text-white ring-4 ring-gray-100 dark:ring-gray-700' : 'bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-400',
+                  'w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold transition-colors duration-300',
+                  isCompleted ? 'bg-success-500 text-white' : isCurrent ? 'bg-warm-500 text-neutral-900 ring-2 ring-neutral-400 dark:ring-gray-700 dark:bg-gray-900 dark:text-white' : 'bg-neutral-200 text-neutral-700 border border-neutral-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700',
                 )}
               >
                 {isCompleted ? (
@@ -51,14 +51,14 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
               <div className="mt-3 text-center">
                 <p
                   className={cn(
-                    'text-sm font-medium transition-colors duration-200',
-                    isCurrent || isCompleted ? 'text-gray-900 dark:text-gray-100' : 'text-gray-400 dark:text-gray-400'
+                    'text-xs font-bold transition-colors duration-200 uppercase tracking-wide',
+                    isCurrent || isCompleted ? 'text-neutral-900 dark:text-gray-100' : 'text-neutral-600 dark:text-gray-400'
                   )}
                 >
                   {step.title}
                 </p>
                 {step.description && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 max-w-[120px]">
+                  <p className="text-xs text-neutral-600 dark:text-gray-400 mt-1 max-w-[120px]">
                     {step.description}
                   </p>
                 )}
@@ -66,7 +66,7 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
             </div>
 
             {index < steps.length - 1 && (
-              <div className="flex-1 h-1 mx-4 mt-[-40px] bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-1 mx-4 mt-[-40px] bg-neutral-300 dark:bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
                   initial={false}
                   animate={{

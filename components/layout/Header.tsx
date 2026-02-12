@@ -51,23 +51,23 @@ export function Header({ title, description }: HeaderProps) {
   };
 
   return (
-    <header className="h-20 border-b border-gray-200 bg-white dark:bg-slate-800 dark:border-slate-700 sticky top-0 z-40">
+    <header className="h-20 border-b-2 border-neutral-300 bg-neutral-100 dark:bg-slate-800 dark:border-slate-700 sticky top-0 z-40">
       <div className="h-full px-8 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{title}</h1>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-gray-100">{title}</h1>
           {description && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{description}</p>
+            <p className="text-sm text-neutral-600 dark:text-gray-300 mt-0.5">{description}</p>
           )}
         </div>
 
         <div className="flex items-center gap-4">
 
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600 dark:text-gray-300" />
             <input
               type="text"
               placeholder="Buscar..."
-              className="w-64 h-10 pl-10 pr-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-gray-300 focus:ring-2 focus:ring-gray-100 transition-all"
+              className="w-64 h-10 pl-10 pr-4 bg-neutral-100 dark:bg-gray-800 border border-neutral-400 dark:border-gray-700 rounded-lg text-sm placeholder:text-neutral-500 dark:placeholder:text-gray-400 focus:outline-none focus:border-warm-500 focus:ring-1 focus:ring-warm-500 transition-all text-neutral-900 dark:text-white"
             />
           </div>
 
@@ -76,9 +76,9 @@ export function Header({ title, description }: HeaderProps) {
             <button
               aria-label="Toggle dark mode"
               onClick={toggleTheme}
-              className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-200 dark:hover:bg-gray-700 transition-colors border border-neutral-300 dark:border-gray-700"
             >
-              {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-600" />}
+              {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-neutral-600" />}
             </button>
           )}
         </div>

@@ -112,13 +112,13 @@ export default function TemplatesPage() {
 
         <div className="flex items-center justify-between mb-6">
           <div className="relative w-80">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600 dark:text-gray-300" />
             <input
               type="text"
               placeholder="Buscar templates..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full h-11 pl-10 pr-4 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm placeholder:text-gray-400 dark:placeholder:text-slate-400 focus:outline-none focus:border-gray-300 dark:focus:border-slate-600 focus:ring-2 focus:ring-gray-100 dark:focus:ring-slate-800 transition-all text-gray-900 dark:text-gray-100"
+              className="w-full h-11 pl-10 pr-4 bg-neutral-100 dark:bg-slate-800 border border-neutral-400 dark:border-slate-700 rounded-lg text-sm placeholder:text-neutral-500 dark:placeholder:text-slate-400 focus:outline-none focus:border-warm-500 dark:focus:border-slate-600 focus:ring-1 focus:ring-warm-500 dark:focus:ring-slate-800 transition-all text-neutral-900 dark:text-white"
             />
           </div>
 
@@ -149,14 +149,14 @@ export default function TemplatesPage() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white dark:bg-slate-800 rounded-2xl shadow-soft-lg w-full max-w-lg"
+                className="bg-neutral-100 dark:bg-slate-800 rounded-lg shadow-lg w-full max-w-lg border border-neutral-400 dark:border-slate-700"
               >
-                <CardHeader className="border-b border-gray-100 dark:border-slate-700">
+                <CardHeader className="border-b border-neutral-300 dark:border-slate-700">
                   <CardTitle>Novo Template</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                    <label className="block text-xs font-bold text-neutral-900 dark:text-white mb-2 uppercase tracking-wide">
                       Nome do Template *
                     </label>
                     <input
@@ -164,12 +164,12 @@ export default function TemplatesPage() {
                       value={templateName}
                       onChange={(e) => setTemplateName(e.target.value)}
                       placeholder="Ex: Inicial Arbitral Despejo"
-                      className="w-full h-11 px-4 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm placeholder:text-gray-400 dark:placeholder:text-slate-400 focus:outline-none focus:border-gray-300 dark:focus:border-slate-600 focus:ring-2 focus:ring-gray-100 dark:focus:ring-slate-800 transition-all text-gray-900 dark:text-gray-100"
+                      className="w-full h-11 px-4 bg-neutral-100 dark:bg-slate-800 border border-neutral-400 dark:border-slate-700 rounded-lg text-sm placeholder:text-neutral-500 dark:placeholder:text-slate-400 focus:outline-none focus:border-warm-500 dark:focus:border-slate-600 focus:ring-1 focus:ring-warm-500 dark:focus:ring-slate-800 transition-all text-neutral-900 dark:text-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                    <label className="block text-xs font-bold text-neutral-900 dark:text-white mb-2 uppercase tracking-wide">
                       Descrição
                     </label>
                     <textarea
@@ -177,12 +177,12 @@ export default function TemplatesPage() {
                       onChange={(e) => setTemplateDescription(e.target.value)}
                       placeholder="Descrição opcional do template..."
                       rows={3}
-                      className="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm placeholder:text-gray-400 dark:placeholder:text-slate-400 focus:outline-none focus:border-gray-300 dark:focus:border-slate-600 focus:ring-2 focus:ring-gray-100 dark:focus:ring-slate-800 transition-all resize-none text-gray-900 dark:text-gray-100"
+                      className="w-full px-4 py-3 bg-neutral-100 dark:bg-slate-800 border border-neutral-400 dark:border-slate-700 rounded-lg text-sm placeholder:text-neutral-500 dark:placeholder:text-slate-400 focus:outline-none focus:border-warm-500 dark:focus:border-slate-600 focus:ring-1 focus:ring-warm-500 dark:focus:ring-slate-800 transition-all resize-none text-neutral-900 dark:text-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                    <label className="block text-xs font-bold text-neutral-900 dark:text-white mb-2 uppercase tracking-wide">
                       Arquivo Word *
                     </label>
                     <FileDropzone
@@ -238,7 +238,7 @@ export default function TemplatesPage() {
             <h3 className="text-xl font-semibold text-gray-900">
               {searchTerm ? 'Nenhum template encontrado' : 'Nenhum template cadastrado'}
             </h3>
-            <p className="text-gray-500 mt-2 mb-6 max-w-md mx-auto">
+            <p className="text-gray-500 dark:text-gray-200 mt-2 mb-6 max-w-md mx-auto">
               {searchTerm
                 ? 'Tente buscar com outros termos'
                 : 'Faça upload de um modelo Word (.docx) para começar a gerar contratos automaticamente.'
@@ -296,7 +296,7 @@ export default function TemplatesPage() {
                       {template.placeholders.slice(0, 6).map((placeholder, i) => (
                         <span
                           key={i}
-                          className="text-xs bg-white dark:bg-slate-700 px-2 py-1 rounded-md text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700"
+                          className="text-xs bg-neutral-100 dark:bg-slate-700 px-2 py-1 rounded-md text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-slate-700"
                         >
                           {truncate(placeholder, 30)}
                         </span>
