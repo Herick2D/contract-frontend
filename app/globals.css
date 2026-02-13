@@ -25,12 +25,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .dark body {
   background-color: #0b1220;
   color: #e6eef8;
 }
-
 
 .dark ::-webkit-scrollbar-track {
   background: #071022;
@@ -39,7 +37,6 @@ body {
 .dark ::-webkit-scrollbar-thumb {
   background: #1f2a3a;
 }
-
 
 .dark *:focus-visible {
   outline: 2px solid #334155;
@@ -50,7 +47,6 @@ body {
   background-color: #334155;
   color: #cbd5e1;
 }
-
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -68,21 +64,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #55585B;
+  background: #55585b;
 }
 
-
 *:focus-visible {
-  outline: 2px solid #FFCD00;
+  outline: 2px solid #ffcd00;
   outline-offset: 2px;
 }
 
-
 ::selection {
-  background-color: #FFCD00;
-  color: #55585B;
+  background-color: #ffcd00;
+  color: #55585b;
 }
-
 
 @layer utilities {
   .animate-in {
@@ -101,21 +94,17 @@ body {
   }
 }
 
-
 .bg-pattern {
-  background-image:
-    radial-gradient(circle at 1px 1px, #dee2e6 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, #dee2e6 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-
 .text-gradient {
-  background: linear-gradient(135deg, #FFCD00 0%, #cca300 100%);
+  background: linear-gradient(135deg, #ffcd00 0%, #cca300 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 
 .glass {
   background: rgba(233, 236, 239, 0.95);
@@ -123,14 +112,8 @@ body {
   -webkit-backdrop-filter: blur(8px);
 }
 
-
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    #e9ecef 0%,
-    #dee2e6 50%,
-    #e9ecef 100%
-  );
+  background: linear-gradient(90deg, #e9ecef 0%, #dee2e6 50%, #e9ecef 100%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }

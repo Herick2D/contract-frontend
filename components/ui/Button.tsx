@@ -8,15 +8,24 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
-    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg';
+  (
+    { className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props },
+    ref
+  ) => {
+    const baseStyles =
+      'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg';
 
     const variants = {
-      primary: 'bg-warm-500 text-neutral-900 font-bold hover:bg-warm-600 focus:ring-warm-500 shadow-sm hover:shadow-md dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition-all uppercase tracking-wide text-xs',
-      secondary: 'bg-neutral-600 text-white font-bold hover:bg-neutral-700 focus:ring-neutral-500 shadow-sm hover:shadow-md dark:bg-gray-600 dark:hover:bg-gray-500 uppercase tracking-wide text-xs',
-      outline: 'border-2 border-neutral-600 text-neutral-900 hover:bg-neutral-100 focus:ring-neutral-400 dark:border-slate-700 dark:text-gray-200 dark:hover:bg-gray-800 font-bold uppercase tracking-wide text-xs',
-      ghost: 'text-neutral-700 hover:bg-neutral-200 focus:ring-neutral-300 dark:text-gray-300 dark:hover:bg-gray-800 font-semibold',
-      danger: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-sm dark:bg-red-600 font-bold uppercase tracking-wide text-xs',
+      primary:
+        'bg-warm-500 text-neutral-900 font-bold hover:bg-warm-600 focus:ring-warm-500 shadow-sm hover:shadow-md dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition-all uppercase tracking-wide text-xs',
+      secondary:
+        'bg-neutral-600 text-white font-bold hover:bg-neutral-700 focus:ring-neutral-500 shadow-sm hover:shadow-md dark:bg-gray-600 dark:hover:bg-gray-500 uppercase tracking-wide text-xs',
+      outline:
+        'border-2 border-neutral-600 text-neutral-900 hover:bg-neutral-100 focus:ring-neutral-400 dark:border-slate-700 dark:text-gray-200 dark:hover:bg-gray-800 font-bold uppercase tracking-wide text-xs',
+      ghost:
+        'text-neutral-700 hover:bg-neutral-200 focus:ring-neutral-300 dark:text-gray-300 dark:hover:bg-gray-800 font-semibold',
+      danger:
+        'bg-error-500 text-white hover:bg-error-600 focus:ring-error-400 shadow-sm dark:bg-red-600 font-bold uppercase tracking-wide text-xs',
     };
 
     const sizes = {

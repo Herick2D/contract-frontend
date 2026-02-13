@@ -12,23 +12,17 @@ import {
   AlertCircle,
   CheckCircle,
   Loader2,
-  RefreshCw
+  RefreshCw,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Header } from '@/components/layout';
-import {
-  Card,
-  CardContent,
-  Button,
-  Badge,
-  FileDropzone,
-  Stepper
-} from '@/components/ui';
+import { Card, CardContent, Button, Badge, FileDropzone, Stepper } from '@/components/ui';
 import {
   listTemplates,
   listContracts,
   processContracts,
-  getDownloadUrl
+  getDownloadUrl,
+  downloadFile,
 } from '@/lib/api';
 import { cn, truncate } from '@/lib/utils';
 import type { Template, ProcessingResponse } from '@/types';
@@ -51,19 +45,17 @@ export default function ContractsPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<ProcessingResponse | null>(null);
 
-
   useEffect(() => {
     async function load() {
       try {
         const data = await listTemplates();
-        setTemplates(data.filter(t => t.status === 'active'));
+        setTemplates(data.filter((t) => t.status === 'active'));
       } catch (error) {
         toast.error('Erro ao carregar templates');
       }
     }
     load();
   }, []);
-
 
   const loadContracts = useCallback(async () => {
     if (!excelFile) return;
@@ -84,7 +76,6 @@ export default function ContractsPage() {
       setIsLoading(false);
     }
   }, [excelFile]);
-
 
   const handleProcess = async () => {
     if (!selectedTemplate || !excelFile || selectedContracts.length === 0) {
@@ -128,10 +119,8 @@ export default function ContractsPage() {
   };
 
   const toggleContract = (contract: string) => {
-    setSelectedContracts(prev =>
-      prev.includes(contract)
-        ? prev.filter(c => c !== contract)
-        : [...prev, contract]
+    setSelectedContracts((prev) =>
+      prev.includes(contract) ? prev.filter((c) => c !== contract) : [...prev, contract]
     );
   };
 
@@ -140,10 +129,14 @@ export default function ContractsPage() {
 
   const canProceed = () => {
     switch (currentStep) {
-      case 0: return !!selectedTemplate;
-      case 1: return !!excelFile;
-      case 2: return selectedContracts.length > 0;
-      default: return false;
+      case 0:
+        return !!selectedTemplate;
+      case 1:
+        return !!excelFile;
+      case 2:
+        return selectedContracts.length > 0;
+      default:
+        return false;
     }
   };
 
@@ -155,14 +148,11 @@ export default function ContractsPage() {
       />
 
       <div className="p-8">
-
         <Card variant="elevated" className="p-6 mb-8">
           <Stepper steps={steps} currentStep={currentStep} />
         </Card>
 
-
         <AnimatePresence mode="wait">
-
           {currentStep === 0 && (
             <motion.div
               key="step-0"
@@ -202,12 +192,14 @@ export default function ContractsPage() {
                       onClick={() => setSelectedTemplate(template)}
                     >
                       <div className="flex items-start gap-4">
-                        <div className={cn(
-                          'w-14 h-14 rounded-lg flex items-center justify-center',
-                          selectedTemplate?.id === template.id
-                            ? 'bg-warm-500 text-neutral-900'
-                            : 'bg-neutral-200 text-neutral-700 dark:bg-gray-700 dark:text-gray-200'
-                        )}>
+                        <div
+                          className={cn(
+                            'w-14 h-14 rounded-lg flex items-center justify-center',
+                            selectedTemplate?.id === template.id
+                              ? 'bg-warm-500 text-neutral-900'
+                              : 'bg-neutral-200 text-neutral-700 dark:bg-gray-700 dark:text-gray-200'
+                          )}
+                        >
                           <FileText className="w-7 h-7" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -233,7 +225,6 @@ export default function ContractsPage() {
               )}
             </motion.div>
           )}
-
 
           {currentStep === 1 && (
             <motion.div
@@ -274,7 +265,6 @@ export default function ContractsPage() {
               </Card>
             </motion.div>
           )}
-
 
           {currentStep === 2 && (
             <motion.div
@@ -326,7 +316,6 @@ export default function ContractsPage() {
             </motion.div>
           )}
 
-
           {currentStep === 3 && (
             <motion.div
               key="step-3"
@@ -346,16 +335,13 @@ export default function ContractsPage() {
                 </Card>
               ) : result ? (
                 <div className="space-y-6">
-
                   <Card variant="elevated" className="p-6">
                     <div className="flex items-center justify-between mb-6">
                       <div>
                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                           Processamento Concluído
                         </h3>
-                        <p className="text-gray-500 dark:text-gray-200">
-                          Job ID: {result.job_id}
-                        </p>
+                        <p className="text-gray-500 dark:text-gray-200">Job ID: {result.job_id}</p>
                       </div>
                       <Badge
                         variant={result.status === 'completed' ? 'success' : 'error'}
@@ -374,15 +360,11 @@ export default function ContractsPage() {
                       </div>
                       <div className="p-4 bg-success-50 rounded-xl">
                         <p className="text-sm text-success-600">Sucesso</p>
-                        <p className="text-2xl font-bold text-success-700">
-                          {result.sucessos}
-                        </p>
+                        <p className="text-2xl font-bold text-success-700">{result.sucessos}</p>
                       </div>
                       <div className="p-4 bg-error-50 rounded-xl">
                         <p className="text-sm text-error-600">Falhas</p>
-                        <p className="text-2xl font-bold text-error-700">
-                          {result.falhas}
-                        </p>
+                        <p className="text-2xl font-bold text-error-700">{result.falhas}</p>
                       </div>
                       <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
                         <p className="text-sm text-gray-600 dark:text-gray-200">Processados</p>
@@ -394,16 +376,27 @@ export default function ContractsPage() {
 
                     {result.download_url && result.sucessos > 0 && (
                       <div className="mt-6 flex justify-center">
-                        <a href={getDownloadUrl(result.job_id)}>
-                          <Button variant="secondary" size="lg">
-                            <Download className="w-5 h-5" />
-                            Baixar Documentos (ZIP)
-                          </Button>
-                        </a>
+                        <Button
+                          variant="secondary"
+                          size="lg"
+                          onClick={() => {
+                            toast.info('Iniciando download...');
+                            downloadFile(result.job_id)
+                              .then(() => {
+                                toast.success('Download concluído!');
+                              })
+                              .catch(() => {
+                                toast.error('Erro no download. Tentando abrir em nova aba...');
+                                window.open(getDownloadUrl(result.job_id), '_blank');
+                              });
+                          }}
+                        >
+                          <Download className="w-5 h-5" />
+                          Baixar Documentos (ZIP)
+                        </Button>
                       </div>
                     )}
                   </Card>
-
 
                   {result.resultados.length > 0 && (
                     <Card variant="bordered" className="p-6">
@@ -425,16 +418,20 @@ export default function ContractsPage() {
                               <AlertCircle className="w-5 h-5 text-error-600 flex-shrink-0" />
                             )}
                             <div className="flex-1 min-w-0">
-                              <p className={cn(
-                                'font-medium',
-                                r.sucesso ? 'text-success-800' : 'text-error-800'
-                              )}>
+                              <p
+                                className={cn(
+                                  'font-medium',
+                                  r.sucesso ? 'text-success-800' : 'text-error-800'
+                                )}
+                              >
                                 Contrato {r.contrato}
                               </p>
-                              <p className={cn(
-                                'text-sm truncate',
-                                r.sucesso ? 'text-success-600' : 'text-error-600'
-                              )}>
+                              <p
+                                className={cn(
+                                  'text-sm truncate',
+                                  r.sucesso ? 'text-success-600' : 'text-error-600'
+                                )}
+                              >
                                 {r.sucesso ? r.arquivo : r.mensagem}
                               </p>
                             </div>
@@ -443,7 +440,6 @@ export default function ContractsPage() {
                       </div>
                     </Card>
                   )}
-
 
                   <div className="flex justify-center">
                     <Button variant="outline" onClick={handleReset}>
@@ -456,7 +452,6 @@ export default function ContractsPage() {
             </motion.div>
           )}
         </AnimatePresence>
-
 
         {currentStep < 3 && (
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100 dark:border-slate-700">
@@ -480,11 +475,7 @@ export default function ContractsPage() {
                 <ArrowRight className="w-4 h-4" />
               </Button>
             ) : currentStep === 2 ? (
-              <Button
-                variant="secondary"
-                onClick={handleProcess}
-                disabled={!canProceed()}
-              >
+              <Button variant="secondary" onClick={handleProcess} disabled={!canProceed()}>
                 Processar {selectedContracts.length} Contrato(s)
                 <ArrowRight className="w-4 h-4" />
               </Button>

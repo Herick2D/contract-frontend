@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Search, Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -7,7 +7,6 @@ interface HeaderProps {
   title: string;
   description?: string;
 }
-
 
 function getInitialTheme(): boolean {
   if (typeof window === 'undefined') return false;
@@ -41,12 +40,20 @@ export function Header({ title, description }: HeaderProps) {
 
     if (newTheme) {
       document.documentElement.classList.add('dark');
-      try { localStorage.setItem('theme', 'dark'); } catch(e) {}
-      try { document.cookie = 'theme=dark; path=/; max-age=31536000'; } catch(e) {}
+      try {
+        localStorage.setItem('theme', 'dark');
+      } catch (e) {}
+      try {
+        document.cookie = 'theme=dark; path=/; max-age=31536000';
+      } catch (e) {}
     } else {
       document.documentElement.classList.remove('dark');
-      try { localStorage.setItem('theme', 'light'); } catch(e) {}
-      try { document.cookie = 'theme=light; path=/; max-age=31536000'; } catch(e) {}
+      try {
+        localStorage.setItem('theme', 'light');
+      } catch (e) {}
+      try {
+        document.cookie = 'theme=light; path=/; max-age=31536000';
+      } catch (e) {}
     }
   };
 
@@ -61,7 +68,6 @@ export function Header({ title, description }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-4">
-
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600 dark:text-gray-300" />
             <input
@@ -71,14 +77,17 @@ export function Header({ title, description }: HeaderProps) {
             />
           </div>
 
-
           {mounted && (
             <button
               aria-label="Toggle dark mode"
               onClick={toggleTheme}
               className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-200 dark:hover:bg-gray-700 transition-colors border border-neutral-300 dark:border-gray-700"
             >
-              {isDark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-neutral-600" />}
+              {isDark ? (
+                <Sun className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-neutral-600" />
+              )}
             </button>
           )}
         </div>

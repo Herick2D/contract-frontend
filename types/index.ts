@@ -1,12 +1,10 @@
-
-
 export interface Template {
   id: string;
   name: string;
   description: string;
   filename: string;
   file_path: string;
-  status: "active" | "inactive";
+  status: 'active' | 'inactive';
   placeholders: string[];
   created_at: string;
   updated_at: string;
@@ -58,7 +56,7 @@ export interface ContractResult {
 
 export interface ProcessingResponse {
   job_id: string;
-  status: "pending" | "processing" | "completed" | "failed";
+  status: 'pending' | 'processing' | 'completed' | 'failed';
   total_contratos: number;
   processados: number;
   sucessos: number;
@@ -92,23 +90,17 @@ export interface HealthResponse {
   version: string;
 }
 
-
 export interface AppState {
-
   templates: Template[];
   selectedTemplate: Template | null;
 
-
   prints: PrintInfo[];
-
 
   contracts: string[];
   selectedContracts: string[];
 
-
   currentJob: ProcessingResponse | null;
   isProcessing: boolean;
-
 
   setTemplates: (templates: Template[]) => void;
   setSelectedTemplate: (template: Template | null) => void;

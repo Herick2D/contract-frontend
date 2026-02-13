@@ -2,25 +2,19 @@ import { create } from 'zustand';
 import type { Template, PrintInfo, ProcessingResponse } from '@/types';
 
 interface AppState {
-
   templates: Template[];
   selectedTemplate: Template | null;
 
-
   prints: PrintInfo[];
-
 
   contracts: string[];
   selectedContracts: string[];
   excelFile: File | null;
 
-
   currentJob: ProcessingResponse | null;
   isProcessing: boolean;
 
-
   currentStep: number;
-
 
   setTemplates: (templates: Template[]) => void;
   setSelectedTemplate: (template: Template | null) => void;
@@ -69,7 +63,7 @@ export const useStore = create<AppState>((set, get) => ({
     const isSelected = selectedContracts.includes(contract);
 
     if (isSelected) {
-      set({ selectedContracts: selectedContracts.filter(c => c !== contract) });
+      set({ selectedContracts: selectedContracts.filter((c) => c !== contract) });
     } else {
       set({ selectedContracts: [...selectedContracts, contract] });
     }

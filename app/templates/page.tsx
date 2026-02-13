@@ -2,15 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  FileText,
-  Plus,
-  Trash2,
-  Download,
-  MoreVertical,
-  Search,
-  RefreshCw
-} from 'lucide-react';
+import { FileText, Plus, Trash2, Download, MoreVertical, Search, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { Header } from '@/components/layout';
 import {
@@ -20,14 +12,9 @@ import {
   CardTitle,
   Button,
   Badge,
-  FileDropzone
+  FileDropzone,
 } from '@/components/ui';
-import {
-  listTemplates,
-  uploadTemplate,
-  deleteTemplate,
-  getTemplateDownloadUrl
-} from '@/lib/api';
+import { listTemplates, uploadTemplate, deleteTemplate, getTemplateDownloadUrl } from '@/lib/api';
 import { cn, formatDate, truncate } from '@/lib/utils';
 import type { Template } from '@/types';
 
@@ -37,7 +24,6 @@ export default function TemplatesPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-
 
   const [templateName, setTemplateName] = useState('');
   const [templateDescription, setTemplateDescription] = useState('');
@@ -97,19 +83,16 @@ export default function TemplatesPage() {
     }
   };
 
-  const filteredTemplates = templates.filter(t =>
-    t.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    t.filename.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredTemplates = templates.filter(
+    (t) =>
+      t.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      t.filename.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
     <>
-      <Header
-        title="Templates"
-        description="Gerencie seus modelos de documentos Word"
-      />
+      <Header title="Templates" description="Gerencie seus modelos de documentos Word" />
 
       <div className="p-8">
-
         <div className="flex items-center justify-between mb-6">
           <div className="relative w-80">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600 dark:text-gray-300" />
@@ -133,7 +116,6 @@ export default function TemplatesPage() {
             </Button>
           </div>
         </div>
-
 
         <AnimatePresence>
           {showUpload && (
@@ -187,7 +169,11 @@ export default function TemplatesPage() {
                     </label>
                     <FileDropzone
                       onFilesSelected={(files) => setSelectedFile(files[0] || null)}
-                      accept={{ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] }}
+                      accept={{
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': [
+                          '.docx',
+                        ],
+                      }}
                       label="Arraste o arquivo .docx aqui"
                       description="ou clique para selecionar"
                     />
@@ -198,7 +184,9 @@ export default function TemplatesPage() {
                       Cancelar
                     </Button>
                     <Button variant="primary" onClick={handleUpload} disabled={isUploading}>
-                      {isUploading ? 'Enviando...' : (
+                      {isUploading ? (
+                        'Enviando...'
+                      ) : (
                         <>
                           <Plus className="w-4 h-4" />
                           Salvar
@@ -211,7 +199,6 @@ export default function TemplatesPage() {
             </motion.div>
           )}
         </AnimatePresence>
-
 
         {isLoading ? (
           <div className="grid grid-cols-3 gap-6">
@@ -241,8 +228,7 @@ export default function TemplatesPage() {
             <p className="text-gray-500 dark:text-gray-200 mt-2 mb-6 max-w-md mx-auto">
               {searchTerm
                 ? 'Tente buscar com outros termos'
-                : 'Faça upload de um modelo Word (.docx) para começar a gerar contratos automaticamente.'
-              }
+                : 'Faça upload de um modelo Word (.docx) para começar a gerar contratos automaticamente.'}
             </p>
             {!searchTerm && (
               <Button variant="secondary" onClick={() => setShowUpload(true)}>

@@ -8,18 +8,15 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', ...props }, ref) => {
     const variants = {
-      default: 'bg-neutral-100 dark:bg-gray-800 rounded-lg border border-neutral-300 dark:border-gray-700',
-      elevated: 'bg-neutral-100 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-neutral-300 dark:border-gray-700',
-      bordered: 'bg-neutral-100 dark:bg-transparent dark:border-gray-700 rounded-lg border-2 border-neutral-400 dark:border-slate-700',
+      default:
+        'bg-neutral-100 dark:bg-gray-800 rounded-lg border border-neutral-300 dark:border-gray-700',
+      elevated:
+        'bg-neutral-100 dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-neutral-300 dark:border-gray-700',
+      bordered:
+        'bg-neutral-100 dark:bg-transparent dark:border-gray-700 rounded-lg border-2 border-neutral-400 dark:border-slate-700',
     };
 
-    return (
-      <div
-        ref={ref}
-        className={cn(variants[variant], className)}
-        {...props}
-      />
-    );
+    return <div ref={ref} className={cn(variants[variant], className)} {...props} />;
   }
 );
 
@@ -63,11 +60,7 @@ CardDescription.displayName = 'CardDescription';
 
 const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn('p-6 pt-0', className)}
-      {...props}
-    />
+    <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
   )
 );
 
@@ -75,11 +68,7 @@ CardContent.displayName = 'CardContent';
 
 const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn('p-6 pt-0 flex items-center gap-3', className)}
-      {...props}
-    />
+    <div ref={ref} className={cn('p-6 pt-0 flex items-center gap-3', className)} {...props} />
   )
 );
 

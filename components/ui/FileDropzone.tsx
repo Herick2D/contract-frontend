@@ -37,7 +37,7 @@ export function FileDropzone({
       setError(null);
 
       if (rejectedFiles.length > 0) {
-        const errors = rejectedFiles.map(f => {
+        const errors = rejectedFiles.map((f) => {
           if (f.errors[0]?.code === 'file-too-large') {
             return `${f.file.name}: arquivo muito grande`;
           }
@@ -94,7 +94,9 @@ export function FileDropzone({
           <div
             className={cn(
               'w-14 h-14 rounded-lg flex items-center justify-center transition-colors duration-200',
-              isDragActive ? 'bg-warm-500 text-neutral-900 dark:bg-slate-600 dark:text-gray-200' : 'bg-neutral-300 text-neutral-900 dark:bg-gray-700 dark:text-gray-200'
+              isDragActive
+                ? 'bg-warm-500 text-neutral-900 dark:bg-slate-600 dark:text-gray-200'
+                : 'bg-neutral-300 text-neutral-900 dark:bg-gray-700 dark:text-gray-200'
             )}
           >
             <Upload className="w-6 h-6" />
@@ -130,34 +132,36 @@ export function FileDropzone({
             className="space-y-2"
           >
             {files.map((file, index) => (
-                <motion.div
-                  key={file.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  className="flex items-center gap-3 p-3 bg-success-50 rounded-xl border border-success-200 dark:bg-gray-800 dark:border-gray-700"
+              <motion.div
+                key={file.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                className="flex items-center gap-3 p-3 bg-success-50 rounded-xl border border-success-200 dark:bg-gray-800 dark:border-gray-700"
+              >
+                <div className="w-10 h-10 rounded-xl bg-success-100 dark:bg-gray-700 flex items-center justify-center">
+                  <File className="w-5 h-5 text-success-600 dark:text-success-300" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                    {file.name}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-200">
+                    {formatBytes(file.size)}
+                  </p>
+                </div>
+                <CheckCircle className="w-5 h-5 text-success-500 dark:text-success-300 flex-shrink-0" />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeFile(index);
+                  }}
+                  className="p-1 hover:bg-gray-200 rounded-lg transition-colors dark:hover:bg-gray-700"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-success-100 dark:bg-gray-700 flex items-center justify-center">
-                    <File className="w-5 h-5 text-success-600 dark:text-success-300" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                      {file.name}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-200">{formatBytes(file.size)}</p>
-                  </div>
-                  <CheckCircle className="w-5 h-5 text-success-500 dark:text-success-300 flex-shrink-0" />
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeFile(index);
-                    }}
-                    className="p-1 hover:bg-gray-200 rounded-lg transition-colors dark:hover:bg-gray-700"
-                  >
-                    <X className="w-4 h-4 text-gray-500 dark:text-gray-300" />
-                  </button>
-                </motion.div>
+                  <X className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                </button>
+              </motion.div>
             ))}
           </motion.div>
         )}

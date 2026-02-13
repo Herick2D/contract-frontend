@@ -11,7 +11,7 @@ import {
   AlertCircle,
   CheckCircle,
   Grid,
-  List
+  List,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Header } from '@/components/layout';
@@ -22,15 +22,9 @@ import {
   CardTitle,
   Button,
   Badge,
-  FileDropzone
+  FileDropzone,
 } from '@/components/ui';
-import {
-  listPrints,
-  uploadPrints,
-  deletePrint,
-  clearAllPrints,
-  getPrintUrl
-} from '@/lib/api';
+import { listPrints, uploadPrints, deletePrint, clearAllPrints, getPrintUrl } from '@/lib/api';
 import { cn, formatBytes } from '@/lib/utils';
 import type { PrintInfo, PrintUploadResponse } from '@/types';
 
@@ -109,20 +103,17 @@ export default function PrintsPage() {
     }
   };
 
-  const filteredPrints = prints.filter(p =>
-    p.contract_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.filename.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPrints = prints.filter(
+    (p) =>
+      p.contract_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.filename.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <>
-      <Header
-        title="Prints"
-        description="Gerencie as imagens das cláusulas contratuais"
-      />
+      <Header title="Prints" description="Gerencie as imagens das cláusulas contratuais" />
 
       <div className="p-8">
-
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <div className="relative w-80">
@@ -141,7 +132,9 @@ export default function PrintsPage() {
                 onClick={() => setViewMode('grid')}
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  viewMode === 'grid' ? 'bg-neutral-100 dark:bg-slate-600 shadow-md' : 'hover:bg-neutral-300 dark:hover:bg-slate-600'
+                  viewMode === 'grid'
+                    ? 'bg-neutral-100 dark:bg-slate-600 shadow-md'
+                    : 'hover:bg-neutral-300 dark:hover:bg-slate-600'
                 )}
               >
                 <Grid className="w-4 h-4 text-neutral-900 dark:text-gray-200" />
@@ -150,7 +143,9 @@ export default function PrintsPage() {
                 onClick={() => setViewMode('list')}
                 className={cn(
                   'p-2 rounded-md transition-colors',
-                  viewMode === 'list' ? 'bg-neutral-100 dark:bg-slate-600 shadow-md' : 'hover:bg-neutral-300 dark:hover:bg-slate-600'
+                  viewMode === 'list'
+                    ? 'bg-neutral-100 dark:bg-slate-600 shadow-md'
+                    : 'hover:bg-neutral-300 dark:hover:bg-slate-600'
                 )}
               >
                 <List className="w-4 h-4 text-neutral-900 dark:text-gray-200" />
@@ -176,7 +171,6 @@ export default function PrintsPage() {
           </div>
         </div>
 
-
         <div className="grid grid-cols-3 gap-6 mb-6">
           <Card variant="elevated" className="p-5 bg-neutral-50 dark:bg-gray-800">
             <div className="flex items-center gap-4">
@@ -184,8 +178,12 @@ export default function PrintsPage() {
                 <ImageIcon className="w-7 h-7 text-neutral-900 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-xs text-neutral-700 dark:text-gray-200 font-bold uppercase tracking-wide">Total de Prints</p>
-                <p className="text-3xl font-bold text-neutral-900 dark:text-white">{prints.length}</p>
+                <p className="text-xs text-neutral-700 dark:text-gray-200 font-bold uppercase tracking-wide">
+                  Total de Prints
+                </p>
+                <p className="text-3xl font-bold text-neutral-900 dark:text-white">
+                  {prints.length}
+                </p>
               </div>
             </div>
           </Card>
@@ -195,7 +193,9 @@ export default function PrintsPage() {
                 <CheckCircle className="w-7 h-7 text-neutral-900 dark:text-gray-200" />
               </div>
               <div>
-                <p className="text-xs text-neutral-700 dark:text-gray-200 font-bold uppercase tracking-wide">Armazenamento</p>
+                <p className="text-xs text-neutral-700 dark:text-gray-200 font-bold uppercase tracking-wide">
+                  Armazenamento
+                </p>
                 <p className="text-3xl font-bold text-neutral-900 dark:text-white">
                   {formatBytes(prints.reduce((acc, p) => acc + p.size_bytes, 0))}
                 </p>
@@ -215,15 +215,17 @@ export default function PrintsPage() {
           </Card>
         </div>
 
-
         <AnimatePresence>
           {showUpload && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              onClick={() => { setShowUpload(false); setUploadResult(null); }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              onClick={() => {
+                setShowUpload(false);
+                setUploadResult(null);
+              }}
             >
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
@@ -237,12 +239,24 @@ export default function PrintsPage() {
                 </CardHeader>
                 <CardContent className="pt-6 space-y-4">
                   <div className="bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4">
-                    <h4 className="font-medium text-gray-800 dark:text-white mb-2">📋 Instruções</h4>
+                    <h4 className="font-medium text-gray-800 dark:text-white mb-2">
+                      📋 Instruções
+                    </h4>
                     <ul className="text-sm text-gray-700 dark:text-gray-200 space-y-1">
                       <li>• O nome do arquivo deve ser o número do contrato</li>
-                      <li>• Formatos aceitos: <strong>.png</strong>, <strong>.jpg</strong>, <strong>.jpeg</strong></li>
-                      <li>• Você pode enviar um <strong>.zip</strong> com múltiplas imagens</li>
-                      <li>• Exemplo: <code className="bg-gray-100 dark:bg-slate-700 px-1 rounded">61796.png</code></li>
+                      <li>
+                        • Formatos aceitos: <strong>.png</strong>, <strong>.jpg</strong>,{' '}
+                        <strong>.jpeg</strong>
+                      </li>
+                      <li>
+                        • Você pode enviar um <strong>.zip</strong> com múltiplas imagens
+                      </li>
+                      <li>
+                        • Exemplo:{' '}
+                        <code className="bg-gray-100 dark:bg-slate-700 px-1 rounded">
+                          61796.png
+                        </code>
+                      </li>
                     </ul>
                   </div>
 
@@ -269,20 +283,26 @@ export default function PrintsPage() {
                   )}
 
                   {uploadResult && (
-                    <div className={cn(
-                      'rounded-xl p-4',
-                      uploadResult.sucesso ? 'bg-success-50 border border-success-200' : 'bg-error-50 border border-error-200'
-                    )}>
+                    <div
+                      className={cn(
+                        'rounded-xl p-4',
+                        uploadResult.sucesso
+                          ? 'bg-success-50 border border-success-200'
+                          : 'bg-error-50 border border-error-200'
+                      )}
+                    >
                       <div className="flex items-center gap-2 mb-2">
                         {uploadResult.sucesso ? (
                           <CheckCircle className="w-5 h-5 text-success-600" />
                         ) : (
                           <AlertCircle className="w-5 h-5 text-error-600" />
                         )}
-                        <span className={cn(
-                          'font-medium',
-                          uploadResult.sucesso ? 'text-success-800' : 'text-error-800'
-                        )}>
+                        <span
+                          className={cn(
+                            'font-medium',
+                            uploadResult.sucesso ? 'text-success-800' : 'text-error-800'
+                          )}
+                        >
                           {uploadResult.mensagem}
                         </span>
                       </div>
@@ -303,7 +323,10 @@ export default function PrintsPage() {
                   <div className="flex justify-end gap-3 pt-4">
                     <Button
                       variant="ghost"
-                      onClick={() => { setShowUpload(false); setUploadResult(null); }}
+                      onClick={() => {
+                        setShowUpload(false);
+                        setUploadResult(null);
+                      }}
                     >
                       Fechar
                     </Button>
@@ -314,18 +337,18 @@ export default function PrintsPage() {
           )}
         </AnimatePresence>
 
-
         {isLoading ? (
-          <div className={cn(
-            viewMode === 'grid' ? 'grid grid-cols-6 gap-4' : 'space-y-2'
-          )}>
+          <div className={cn(viewMode === 'grid' ? 'grid grid-cols-6 gap-4' : 'space-y-2')}>
             {[...Array(12)].map((_, i) => (
-              <div key={i} className={cn(
-                'animate-pulse',
-                viewMode === 'grid'
-                  ? 'aspect-square bg-gray-100 dark:bg-slate-700 rounded-xl'
-                  : 'h-16 bg-gray-100 dark:bg-slate-700 rounded-xl'
-              )} />
+              <div
+                key={i}
+                className={cn(
+                  'animate-pulse',
+                  viewMode === 'grid'
+                    ? 'aspect-square bg-gray-100 dark:bg-slate-700 rounded-xl'
+                    : 'h-16 bg-gray-100 dark:bg-slate-700 rounded-xl'
+                )}
+              />
             ))}
           </div>
         ) : filteredPrints.length === 0 ? (
@@ -339,8 +362,7 @@ export default function PrintsPage() {
             <p className="text-gray-500 dark:text-slate-400 mt-2 mb-6 max-w-md mx-auto">
               {searchTerm
                 ? 'Tente buscar com outros termos'
-                : 'Faça upload das imagens das cláusulas contratuais para incluí-las nos documentos gerados.'
-              }
+                : 'Faça upload das imagens das cláusulas contratuais para incluí-las nos documentos gerados.'}
             </p>
             {!searchTerm && (
               <Button variant="secondary" onClick={() => setShowUpload(true)}>
@@ -368,7 +390,8 @@ export default function PrintsPage() {
                   alt={print.contract_number}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiB4PSIzIiB5PSIzIiByeD0iMiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSIyIi8+PHBhdGggZD0ibTIxIDE1LTMuMDg2LTMuMDg2YTIgMiAwIDAgMC0yLjgyOCAwTDYgMjEiLz48L3N2Zz4=';
+                    e.currentTarget.src =
+                      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiB4PSIzIiB5PSIzIiByeD0iMiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSIyIi8+PHBhdGggZD0ibTIxIDE1LTMuMDg2LTMuMDg2YTIgMiAwIDAgMC0yLjgyOCAwTDYgMjEiLz48L3N2Zz4=';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
@@ -376,9 +399,7 @@ export default function PrintsPage() {
                     <p className="text-white font-medium text-sm truncate">
                       {print.contract_number}
                     </p>
-                    <p className="text-white/70 text-xs">
-                      {formatBytes(print.size_bytes)}
-                    </p>
+                    <p className="text-white/70 text-xs">{formatBytes(print.size_bytes)}</p>
                   </div>
                   <button
                     onClick={() => handleDelete(print.contract_number)}
@@ -391,11 +412,7 @@ export default function PrintsPage() {
             ))}
           </motion.div>
         ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="space-y-2"
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2">
             {filteredPrints.map((print, index) => (
               <motion.div
                 key={print.filename}
@@ -412,7 +429,8 @@ export default function PrintsPage() {
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
-                          e.currentTarget.parentElement!.innerHTML = '<svg class="w-6 h-6 text-gray-400 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>';
+                          e.currentTarget.parentElement!.innerHTML =
+                            '<svg class="w-6 h-6 text-gray-400 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>';
                         }}
                       />
                     </div>

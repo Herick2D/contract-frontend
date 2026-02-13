@@ -32,7 +32,11 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
                 animate={{ scale: isCurrent ? 1.1 : 1 }}
                 className={cn(
                   'w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold transition-colors duration-300',
-                  isCompleted ? 'bg-success-500 text-white' : isCurrent ? 'bg-warm-500 text-neutral-900 ring-2 ring-neutral-400 dark:ring-gray-700 dark:bg-gray-900 dark:text-white' : 'bg-neutral-200 text-neutral-700 border border-neutral-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700',
+                  isCompleted
+                    ? 'bg-success-500 text-white'
+                    : isCurrent
+                      ? 'bg-warm-500 text-neutral-900 ring-2 ring-neutral-400 dark:ring-gray-700 dark:bg-gray-900 dark:text-white'
+                      : 'bg-neutral-200 text-neutral-700 border border-neutral-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700'
                 )}
               >
                 {isCompleted ? (
@@ -52,7 +56,9 @@ export function Stepper({ steps, currentStep, className }: StepperProps) {
                 <p
                   className={cn(
                     'text-xs font-bold transition-colors duration-200 uppercase tracking-wide',
-                    isCurrent || isCompleted ? 'text-neutral-900 dark:text-gray-100' : 'text-neutral-600 dark:text-gray-400'
+                    isCurrent || isCompleted
+                      ? 'text-neutral-900 dark:text-gray-100'
+                      : 'text-neutral-600 dark:text-gray-400'
                   )}
                 >
                   {step.title}
